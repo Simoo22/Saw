@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM: change style</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <script>
+    function changeStyle(id) {
+      var elem = document.getElementById(id);
+      //elem.style.display = "none";
+      elem.style.border = "2px solid black";
+      elem.style.width = "100px";
+      elem.style.height = "100px";
+      elem.style.transform = "rotate(45deg)";
+      //elem.style.position = "absolute";
+      //elem.style.top = "100px";
+      //elem.style.left = "100px";
+      }
+    </script>
+ </head>
+
+<body class="centro">
+<h1>Cambiare lo stile degli elementi</h1>
+<p><img id="myimg1" alt="boy" src="images/boy.png" onclick="changeStyle('myimg1');"/><img id="myimg2" alt="girl" src="images/girl.png" onclick="changeStyle('myimg2');"/><img id="myimg3" alt="man" src="images/man.png" onclick="changeStyle('myimg3');"/>
+</p>
+<p>click on the images</p>
+</body>
+</html>

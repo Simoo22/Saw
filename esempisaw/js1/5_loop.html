@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Infinite Loop</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+</head>
+
+
+<body>
+<h1 class="centro">Ops!!! Infinite Loop!</h1>
+ 
+<script>
+var a = new Array();
+
+/* inizializzo due celle dell'array */
+a[0]=0;
+a[1]=0;
+
+// for (i=0; i<=a.length; i++) {  /* attenzione! con <= si crea loop infinito */
+for (i=0; i<a.length; i++) {
+	a[i]=i*10;
+	window.open("","","width=10,height=20");
+}
+</script>
+
+</body>
+</html>

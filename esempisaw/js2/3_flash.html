@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Change color</title>
+
+<style>
+html {
+   width: 100%;
+   height: 100%;
+}
+
+body {
+   width: 100%;
+   height: 100%;
+   background-color: #ccc;
+   margin: 0; 
+}
+
+.sfondo {
+   background-color: #ccc;
+   width: 20%;
+   height: 20%;
+   float:left;
+}
+</style>
+
+<script>
+"use strict";
+
+window.stop = 0;
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function changecolor() {
+  if (window.stop === 0) {
+    for (var i = 1; i < 26; i++) {
+      var r = getRandomIntInclusive(0, 255);
+      var g = getRandomIntInclusive(0, 255);
+      var b = getRandomIntInclusive(0, 255);
+      var color = "rgb(" + r + "," + g + "," + b + ")";
+      var id = "d" + i;
+      var elem = document.getElementById(id);
+      elem.style.backgroundColor = color;
+    }
+    window.setTimeout(changecolor, 500);
+  }
+}
+
+function resetcolor() {
+  for (var i = 1; i < 26; i++) {
+    var id = "d" + i;
+    var elem = document.getElementById(id);
+    elem.style.backgroundColor = "#ccc";
+  }
+}
+
+</script>
+</head>
+
+<body>
+<div id="d1" class="sfondo"></div>
+<div id="d2" class="sfondo"></div>
+<div id="d3" class="sfondo"></div>
+<div id="d4" class="sfondo"></div>
+<div id="d5" class="sfondo"></div>
+<div id="d6" class="sfondo"></div>
+<div id="d7" class="sfondo"></div>
+<div id="d8" class="sfondo"></div>
+<div id="d9" class="sfondo"></div>
+<div id="d10" class="sfondo"></div>
+<div id="d11" class="sfondo"></div>
+<div id="d12" class="sfondo"></div>
+<div id="d13" class="sfondo" style="text-align:center"><br/>
+<form>
+<input type="button" value="Click me!" onclick="window.stop=0;changecolor();"/>
+<input type="button" value="Stop me!" onclick="window.stop=1;resetcolor();"/>
+</form>
+</div>
+<div id="d14" class="sfondo"></div>
+<div id="d15" class="sfondo"></div>
+<div id="d16" class="sfondo"></div>
+<div id="d17" class="sfondo"></div>
+<div id="d18" class="sfondo"></div>
+<div id="d19" class="sfondo"></div>
+<div id="d20" class="sfondo"></div>
+<div id="d21" class="sfondo"></div>
+<div id="d22" class="sfondo"></div>
+<div id="d23" class="sfondo"></div>
+<div id="d24" class="sfondo"></div>
+<div id="d25" class="sfondo"></div>
+
+</body>
+</html>

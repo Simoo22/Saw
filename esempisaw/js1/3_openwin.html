@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>window.open</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <script>
+	function openwin() {
+                var windowFeatures = "width=550,height=300,menubar=no,location=no,resizable=no,scrollbars=no,status=no";
+		window.open("popup.html","newwin",windowFeatures)
+	}
+     </script>
+</head>
+
+<body>
+<br/>
+<div class="box centro">
+ <h2>come with me ... </h2> 
+ <img src="images/hamwalk.gif" alt="hamwalk"/> 
+ <form>
+ <input class="pulsante" type="button" value="Click here" onclick="openwin();"/>
+</form>
+</div>
+
+</body>
+</html>

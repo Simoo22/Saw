@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM: getAttribute</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <script>
+
+    function viewAttr(id) {
+      let elem = document.getElementById(id);
+      let atts = elem.attributes;
+      let arr = [];
+      for (let i = 0; i<atts.length; i++) {
+          arr.push("\n" + atts[i].nodeName + ": " + atts[i].nodeValue + " (" + atts[i].nodeType + ")");
+      }
+      alert(arr); 
+    }
+    </script>
+ </head>
+
+<body class="centro">
+<h1>DOM: getAttribute</h1>
+<p><img id="myimg" src="images/default.png" alt="default avatar" 
+width="256" height="256" onmouseover="viewAttr('myimg');"/></p>
+<p>move the mouse on the image to read its attributes</p>
+</body>
+</html>

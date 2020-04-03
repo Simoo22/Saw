@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM: setAttribute</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <script>
+    function changeAttr(id) {
+      var elem = document.getElementById(id);
+      var nw = parseInt(window.prompt("New width?","0"));
+      var nh = parseInt(window.prompt("New heiht?","0"));
+      if (isNaN(nw) || isNaN(nh) || nw<10 || nh<10)
+        window.alert("Operazione non possibile");
+      else {
+      	elem.setAttribute("width",nw);
+      	elem.setAttribute("height",nh);
+      	window.alert("width: " + elem.getAttribute("width") + "\nheight: " + elem.getAttribute("height"));
+      }
+    }
+    </script>
+ </head>
+
+<body class="centro">
+<h1>DOM: setAttribute</h1>
+<p><img id="myimg" src="images/default.png" alt="default avatar" onmouseover="changeAttr('myimg');"/></p>
+<p>move the mouse on the image to set width and height attributes</p>
+</body>
+</html>

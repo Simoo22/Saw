@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ajax exmple</title>
+    <script src="utility.js"></script>
+
+    <script>
+        function makeRequest(url) {
+            xhr = getXMLHttpRequestObject();
+            xhr.onreadystatechange = alertContents;
+            xhr.open('GET', url, true);
+            xhr.send(null);
+        }
+
+
+        function alertContents() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    jsondoc = JSON.parse(xhr.responseText);
+                    print(jsondoc);
+                } else
+                    alert('There was a problem with the request.');
+            }
+        }
+
+        function print(a) {
+            var el;
+            var out = "<table border='1' cellpadding='5'>";
+            for (i = 0; i < a.length; i++) {
+		//elements can be accessed as object properties, with . notation
+                out += "<tr><td>" + a[i].name + "</td>"; 
+		//elements can be accessed as associative arrays, with keys
+                out += "<td>" + a[i]["surname"] + "</td>";
+                out += "<td>" + a[i].year + "</td></tr>";
+            }
+            out += "</table>";
+
+            el = document.getElementById("mytable");
+            el.innerHTML = out;
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="button" value="GET JSON" onclick="makeRequest('2_exampleJSON.php');">
+    </form>
+
+    <br/><br/>
+    <center>
+        Table filled with data requested from the server:
+        <br/><br/>
+        <div id="mytable"></div>
+    </center>
+
+</body>
+</html>

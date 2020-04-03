@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM example</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <script>
+    function addLink() {
+      var textlink = window.prompt("Enter text link","");
+      var url = window.prompt("Enter URL","https://");
+      var myli = document.createElement("li");
+      var mylink = document.createElement("a");
+      var mytxt = document.createTextNode(textlink);
+      var myul = document.getElementById("gallery");
+
+      myul.appendChild(myli);
+      myli.appendChild(mylink);
+      mylink.appendChild(mytxt);
+      mylink.setAttribute("href",url);
+     }
+    </script>
+ </head>
+
+<body>
+<h1>Add a new link to this list</h1>
+<ul id="gallery">
+<li><a href="images/default.png">Default</a></li>
+<li><a href="images/boy.png">Boy</a></li>
+<li><a href="images/man.png">Man</a></li>
+<li><a href="images/woman.png">Woman</a></li>
+</ul>
+
+<input type="button" value="Add link" onClick="addLink();">
+</body>
+</html>

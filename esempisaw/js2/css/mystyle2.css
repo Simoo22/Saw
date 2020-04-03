@@ -1,0 +1,43 @@
+body {
+	font-family: Verdana, Arial;
+	color: #000066;
+	margin: 0;
+}
+
+
+.centro {
+	margin: auto;
+	text-align: center;
+}
+
+.rollover {
+	width: 133px;
+	height: 133px;
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+
+#im1 {
+	background-image: url("../images/chimico.gif");
+}
+
+#im2 {
+	background-image: url("../images/babbonatale.gif");
+}
+
+#im3 {
+	background-image: url("../images/gallo.gif");
+}
+
+#im4 {
+	background-image: url("../images/pupazzoneve.gif");
+}
+
+#im5 {
+	background-image: url("../images/fiore.gif");
+}
+
+#im1:hover, #im2:hover, #im3:hover, #im4:hover, #im5:hover {
+	background-image: url("../images/poff.gif");
+}
+

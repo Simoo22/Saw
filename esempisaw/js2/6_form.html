@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Form Object</title>
+    <style>
+    body {
+	padding: 20px;
+    }
+    .pos {
+	position: absolute;
+	left: 150px;
+	width: 200px;
+    }
+    input, textarea { box-sizing: border-box }
+    </style>
+    <script>
+    "use strict";
+    function check_pwd() {
+  	var pwd =  document.querySelector("#pwd").value;
+	var score=0;
+	if (/\d/.test(pwd)) score++;
+	if (/[A-Z]/.test(pwd)) score++;
+	if (/\W|_/.test(pwd)) score++;
+	if (pwd.length > 5) score++;
+	document.querySelector("#score").value = score;
+   }
+   </script>
+   </head>
+
+<body>
+<h3>Form object</h3>
+
+<form id="signup" method="post" action="http://www.foo.it/foo.php">
+<label>username <input class="pos" type="text" name="username"></label>
+<br>
+<label>password <input class="pos" type="password" name="pwd" id="pwd" oninput="check_pwd();"><br>
+<progress class="pos" id="score" value="0" max="4"  style="height: 10px;"></progress></label>
+<br>
+<label>
+tweet <textarea class="pos" rows="10" maxlength="280" oninput="document.querySelector('#char').innerHTML = this.maxLength - this.value.length;"></textarea>
+<span id="char">280</span>
+</label>
+</form>
+
+</body>
+</html>

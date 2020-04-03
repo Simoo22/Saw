@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Image Object</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+
+    <script>
+	function imgProperties(img) {
+                var msg = "";
+                for (var im_prop in img)
+                    if (typeof img[im_prop] !== 'function')
+			msg += "<strong>[" + im_prop + "]</strong>: " + img[im_prop] + "<br/>";
+                
+                document.getElementById("output").innerHTML = msg;
+         }
+     </script>
+</head>
+
+<body>
+  <div class="centro">
+  <h1>Array of Images</h1>
+  <a href="http://www.chimico.org"><img id="im1" src="images/chimico.gif" alt="chimico" 
+onmouseover="imgProperties(this)"
+onmouseleave="document.getElementById('output').innerHTML = ''"></a>
+  <a href="http://www.babbonatale.org"><img id="im2" src="images/babbonatale.gif" alt="babbonatale" onmouseover="imgProperties(this)" /></a>
+  <a href="http://www.gallo.org"><img id="im3" src="images/gallo.gif" alt="gallo" onmouseover="imgProperties(this)" /></a>
+  <a href="http://www.pupazzoneve.org"><img id="im4" src="images/pupazzoneve.gif" alt="pupazzoneve" onmouseover="imgProperties(this)" /></a>
+  <a href="http://www.fiore.org"><img id="im5" src="images/fiore.gif" alt="fiore" onmouseover="imgProperties(this)" /></a>
+</div>
+
+<pre id="output">
+
+</pre>
+</body>
+</html>

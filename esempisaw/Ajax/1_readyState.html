@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajax exmple</title>
+    <script src="utility.js"></script>
+
+    <script>
+        var stato = new Array("uninitialized", "loading", "loaded", "interactive", "complete");
+        var xhr = null;
+
+        function handleRequestStateChange() {
+            if (xhr.readyState == 4) {
+                var el = document.getElementById("myelem2");
+                if (xhr.status == 200) {
+                    el.innerHTML += "<b>readyState: </b> " + xhr.readyState + "...." + stato[xhr.readyState] + "<br>" + xhr.responseText;
+                } else
+                    el.innerHTML += "<b>readyState: </b> " + xhr.readyState + " <b>BUT</b> something went wrong<br>";
+            } else { // xhr.readyState < 4
+                var el = document.getElementById("myelem");
+                el.innerHTML += "<b>readyState: </b> " + xhr.readyState + "....." + stato[xhr.readyState] + "<br>";
+            }
+        }
+
+        function asynchcall(url) {
+
+            var out = "";
+            xhr = getXMLHttpRequestObject();
+
+            if (xhr == null) {
+                throw "AJAX not supported";
+            }
+
+            xhr.onreadystatechange = handleRequestStateChange; // callback 
+            xhr.open("GET", url, true);
+            xhr.send();
+
+        }
+    </script>
+</head>
+
+
+<body>
+    <form method="post">
+        <input type="button" onclick="asynchcall('donothing.php');" value="Click here" />
+    </form>
+    <br><br>
+    <div style="background-color:yellow;" id="myelem"><small>Different states here</small>
+        <br><br>
+    </div>
+    <div style="background-color:pink;" id="myelem2"><small>Final state here</small>
+        <br><br>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM Example</title>
+    <script>
+	function findElements () {
+		var list=document.getElementsByTagName('li');
+		var para=document.getElementsByTagName('p');
+		var heading = document.getElementsByTagName('h1');
+		var msg="This document contains " + list.length + " list items, ";
+        	msg +=  para.length + " paragraphs, and " + heading.length + " main titles.";
+		alert(msg);
+	}
+    </script>
+</head>
+
+
+<body onload="findElements()">
+<em>The numbers of elements in this page are shown once the document is loaded ...</em>
+<h1>First heading</h1>
+<p>First paragraph</p>
+<h1>Second heading</h1>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li><a href="http://www.google.com">Linked Item 3</a></li>
+<li>Item 4</li>
+</ul>
+<p>Second paragraph</p>
+<p>Third paragraph</p>
+</body>
+</html>
+

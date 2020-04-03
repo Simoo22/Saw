@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Screen</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+
+    <script>
+     function screenproperties() {         
+     var msg = "";
+     var prop;
+     for (prop in window.screen) {
+       if (typeof(window.screen[prop]) !== 'function')
+            msg += prop + ": " + window.screen[prop] + "\n";
+		   
+       }
+      window.alert(msg);
+     }
+     </script>
+</head>
+
+<body>
+<h1 class="centro">Oggetto Screen</h1>
+<script>
+screenproperties();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+body {
+	font-family: Verdana, Arial;
+	color: #000066;
+	margin: 0;
+}
+
+.box {
+	background-color: #eee;
+	border: solid 3px #000066;
+	padding: 30px;
+	text-align: center;
+}
+
+td {
+       padding: 5px;
+}
+
+.tableborder {
+	border: solid 3px #ddd;
+}
+
+.centro {
+	margin: auto;
+	text-align: center;
+}

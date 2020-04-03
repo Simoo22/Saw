@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rollover</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+
+    <script>
+	var imm = [
+	 	"images/chimico.gif",
+	 	"images/babbonatale.gif",
+	 	"images/gallo.gif",
+	 	"images/pupazzoneve.gif",
+	 	"images/fiore.gif",
+	 	"images/poff.gif",
+	];
+
+	function swap(i,id) {
+          	var elem = document.getElementById(id);
+                elem.src = imm[i];
+	}
+     </script>
+
+<body class="centro">
+<br>
+<br>
+ 
+<h3>Rollover example</h3>
+<br>
+<br>
+<img id="im0" src="images/chimico.gif" 	   alt="chimico"     onmouseover="swap(5,'im0');"  onmouseout="swap(0,'im0');" />
+<img id="im1" src="images/babbonatale.gif" alt="babbonatale" onmouseover="swap(5,'im1');"  onmouseout="swap(1,'im1');" />
+<img id="im2" src="images/gallo.gif"       alt="gallo"       onmouseover="swap(5,'im2');"  onmouseout="swap(2,'im2');" />
+<img id="im3" src="images/pupazzoneve.gif" alt="pupozzoneve" onmouseover="swap(5,'im3');"  onmouseout="swap(3,'im3');" />
+<img id="im4" src="images/fiore.gif"       alt="fiore"       onmouseover="swap(5,'im4');"  onmouseout="swap(4,'im4');" />
+
+</body>
+</html>

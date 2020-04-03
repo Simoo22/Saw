@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Form validation</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+
+    <script>
+    function validateForm(f) {
+    var el;
+    el = document.getElementById('user_error');
+    if (f.username.value == "") 
+	el.innerHTML = "Insert username";
+     else 
+	el.innerHTML = "";
+
+     el = document.getElementById('pwd_error');
+     if ((f.pwd.value == "") || (f.pwd.value.length <9)) 
+	el.innerHTML = "Password should have at least 8 characters";
+     else
+	el.innerHTML = "";
+
+     return false;
+     }
+    </script>
+  </head>
+
+<body>
+<h3>Form validation</h3>
+<form onsubmit="return validateForm(this);" id="form1" name="form1">
+<table>
+<tr>
+<td>Username</td>
+<td><input type="text" name="username" size="24"/></td>
+<td><span id="user_error" class="error"></span></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><input type="password" name="pwd" size="24"/></td>
+<td><span id="pwd_error" class="error"></span></td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="submit" value="Submit" name="submit" />
+</td>
+<td></td>
+</tr>
+</table>
+</form>
+</html>
+  

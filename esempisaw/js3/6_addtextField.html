@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM example</title>
+    <style> 
+      ul { list-style: none; margin: 0;}
+    </style>
+    <script>
+
+    function addField(ulname,liname,fieldname) 
+    {
+      let mylist = document.getElementById(ulname);
+      let myitem = document.getElementsByName(liname);
+      let clone = myitem[0].cloneNode(true);                /* clono il primo list item con campo di testo al suo interno */
+
+      let newliname = liname + mylist.children.length;      /* creo nuovo name per <li> */
+      let newfieldname = fieldname + mylist.children.length;/* credo nuovo name per campo testo */
+     
+      mylist.appendChild(clone);                            /* inserisco clone come ultimo figlio della lista */
+
+      let myel = document.getElementsByName(liname);        /* ora esistono due elementi li con lo stesso nome */
+      myel[1].setAttribute("name",newliname);               /* cambio il nome al secondo li */
+
+      myel = document.getElementsByName(fieldname);         /* ora esistono due campi di testo con lo stesso nome */
+      myel[1].setAttribute("name",newfieldname);            /* cambio il nome al secondo campo di testo */
+      
+   }
+    </script>
+ </head>
+
+<body>
+<h1>Add fields to the form dynamically</h1>
+<table>
+<tr>
+<td align="right">
+<form id="userdata" method="post" action="" onsubmit="return false;">
+<input type="text" placeholder="enter first name"></td>
+<td></td>
+</tr>
+
+<tr>
+<td align="right"><input type="text" placeholder="enter last name"></td>
+<td></td>
+</tr>
+
+<tr>
+<td>
+<ul id="ulemail">
+<li name="liemail"><input type="email" name="myemail" placeholder="enter e-mail address"></li>
+</ul>
+</td>
+<td valign="bottom">
+<input type="button" value="+" onclick="addField('ulemail','liemail','myemail');">
+</td>
+</tr>
+
+<tr>
+<td>
+<ul id="ultel">
+<li name="litel"><input type="tel" name="mytel" placeholder="enter phone number"></li>
+</ul>
+</td>
+<td valign="bottom">
+<input type="button" value="+" onclick="addField('ultel','litel','mytel');">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<input type="submit" value="Send data">
+</form>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Date</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+</head>
+
+<body>
+<h1 class="centro">Oggetto Date</h1>
+<script>
+var now = new Date();
+var t = now.getTime();
+window.alert("Sono passati " + t + " millisecondi a partire dal 1/01/1970");
+var h = Math.floor((t/1000)/60/60);
+window.alert("Corrispondono a circa " + h + " ore");
+</script>
+</body>
+</html>

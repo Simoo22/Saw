@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>My First Text Editor</title>
+        <style>
+	    /*input[type="checkbox"]:checked + * {
+		background-color: #aaaaaa;
+	    }
+	    input[type="checkbox"] + * {
+		width: 16px;
+		height: 16px;
+		display: block;
+		float: left;
+		margin: 4px;
+		padding: 2px;
+	    }
+	    input[type="checkbox"] {
+		display: none;
+	    }*/
+	    input[type="color"] {
+		width: 4em;
+	    }
+	    label {
+		white-space: nowrap;
+	    }
+	    html  {
+		height: 100%;
+	    }
+	    body {
+		margin: 0;
+		padding-top: 0;
+		background: #ccf;
+		height: 80%;
+	    }
+	    table {
+		width: 90%;
+		height: 90%;
+		margin: 5%;
+	    }
+	    td {
+		vertical-align: top;
+		padding: 20px;
+		width: 40%;
+		height: 100%;
+		background: white;
+	    }
+	    #op {
+		float: right;
+	    }
+	    form {
+		height: calc(100% - 4px);
+	    }
+	    textarea {
+		margin-top: 10px;
+		width: 90%;
+		height: 80%;
+	    }
+        </style>
+
+<script>
+function applyformat(){
+
+/* prefix serve per aprire i tag di stile e formattazione */	
+prefix = "<p style=\"display:inline;color:" + (document.getElementById("c").value=="" ? "#000" : document.getElementById("c").value) + "; font-family:'" + document.getElementById("f").value + "';font-size:" + document.getElementById("s").value + "pt;\">";
+
+/* postfix serve per chiudere i tag di stile e formattazione in ordine inverso alla loro apertura */	
+postfix = "</p><br>";
+
+/* grassetto */
+    if (document.getElementById("b").checked) { 
+         prefix+="<b>";
+         postfix="</b>" + postfix;
+     }
+
+/* corsivo */
+    if (document.getElementById("i").checked) { 
+         prefix +="<i>";
+         postfix= "</i>" + postfix;
+    }
+
+/* sottolineato */
+    if (document.getElementById("u").checked) { 
+         prefix +="<u>";
+         postfix= "</u>" + postfix;
+    }
+
+/* leggo testo inserito dall'utente */
+    mystr = document.getElementById("mytext").value
+
+/* preparo stringa di output formattata in HTML (rimpiazzo \n con <br>) */
+    mystr = "<p>" + prefix + mystr.replace(/\n/g, "<br>") + postfix + "</p>";
+
+    el=document.getElementById("myformattedtext");
+
+
+/* scrivo output nel <div> di destra */
+    if (document.getElementById("op").value=="w")
+    	el.innerHTML = mystr;
+    else 	/* appendo output nel <div> di destra */
+    	el.innerHTML += mystr;
+  
+    document.getElementById("myeditor").reset();
+  }
+    </script>
+</head>
+
+<body>
+<h2 align="center">My first JavaScript editor</h2>
+<table cellspacing="2">
+<tr>
+<td>
+<form id="myeditor">
+<label for="b"><b>B</b><input id="b" name="b" type="checkbox"></label>
+<label for="i"><i>I</i><input id="i" name="i" type="checkbox"></label>
+<label for="u"><u>U</u><input id="u" name="u" type="checkbox"></label>
+
+<label for="f">Font 
+<select id="f">
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Comic Sans MS">Comic</option>
+<option value="Monospace">Monospace</option>
+</select>
+</label>
+
+<label for="s">Size 
+<select id="s">
+<option value="8">8</option>
+<option value="10" selected>10</option>
+<option value="12">12</option>
+<option value="14">14</option>
+<option value="16">16</option>
+<option value="18">18</option>
+<option value="20">20</option>
+</select>
+</label>
+
+<label for="c">Color 
+<input id="c" name="c" type="color" placeholder="#000000"></label>
+
+<select id="op" onChange="applyformat();">
+<option value="s" selected>Action</option>
+<option value="a">Append</option>
+<option value="w">Write</option>
+</select>
+<br>
+<textarea id="mytext" placeholder="Write a sentence"></textarea>
+</td>
+</form>
+<td><div id="myformattedtext"></div></td>
+</tr>
+</table>
+
+</body>
+</html>
+  

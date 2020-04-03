@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Document Object</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+
+    <script>
+	function docProperties() {
+                var msg = "";
+  		for (prop in window.document)
+                    if (typeof window.document[prop] !== 'function')
+                   	msg += prop + " ---> " + window.document[prop] + "\n";
+                 window.alert(msg);
+
+	}
+     </script>
+</head>
+
+<body bgcolor="#eeeeee" text="#000099">
+<!-- gli attributi del body sono deprecati -->
+
+<h1 class="centro">Document Object</h1>
+<script>
+docProperties();
+</script>
+</body>
+</html>
