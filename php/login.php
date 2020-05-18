@@ -7,15 +7,14 @@
   <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
   <?php
 
-
-  session_start();
   $path = $_SERVER['DOCUMENT_ROOT'];
-  include($path."/php/header.php");
+  include($path."/includes/header.php");
   require_once($path."/db/mysql_credentials.php");
 
   // Add session control, header, ...
@@ -47,7 +46,7 @@
     }
   }
 
-
+  $error_message = "Errore nel login. <br>";
   $con = mysqli_connect($mysql_host,$mysql_user,$mysql_pass,$mysql_db);
   if($con) {
     if(isset($_POST['email']) && isset($_POST['pass'])) {
@@ -58,22 +57,24 @@
         $user = login($email, $pass, $con);
 
         if ($user) {
+          session_start();
           $_SESSION['email'] = "$email";
           header("location: /index.php");
         } else {
           // Error message
-          echo "Wrong email or password";
+          $error_message = $error_message."Email e password non corrispondono <br>";
         }
       } else {
-        echo "Email non valida";
+        $error_message = $error_message."Email non valida <br>";
       }
     } else {
-      echo "Email e password sono richiesti.";
+      $error_message = $error_message."Email e password sono richiesti. <br>";
     }
   } else {
-    echo "Server error";
+    $error_message = $error_message."Impossibile connettersi al server <br>";
   }
 
+  include($path."/includes/error.php");
   ?>
 
 </body>

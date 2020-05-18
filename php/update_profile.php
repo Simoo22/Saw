@@ -19,9 +19,6 @@ $first_name = test_input($con,$_POST['nome']); // replace null with $_POST and s
 $last_name = test_input($con,$_POST['cognome']); // replace null with $_POST and sanitization
 $describe_user = test_input($con,$_POST['textarea']);
 $user_country = test_input($con,$_POST['nazione']);
-$user_city = test_input($con,$_POST['comune']);
-$user_province = test_input($con,$_POST['provincia']);
-$user_CAP = test_input($con,$_POST['CAP']);
 $user_address = test_input($con,$_POST['address']);
 $user_gender = test_input($con,$_POST['sesso']);
 $user_birthday = test_input($con,$_POST['date']);
@@ -36,15 +33,13 @@ function test_input($con,$data) {
 }
 
 function update_user( $email, $first_name, $last_name, $user_birthday, $user_country,
-    $user_gender, $describe_user, $user_address, $user_city, $user_province, $user_CAP, $db_connection) {
+    $user_gender, $describe_user, $user_address, $db_connection) {
   if (isset($_POST['update'])) {
-    $query ="UPDATE utenti SET nome=?,
-      cognome=?,data_nascita=?,nazione=?,
-      sesso=?,descrizione=?,address=?,
-      comune=?,provincia=?,CAP=? WHERE email=?";
+    $query ="UPDATE utenti SET nome=?, cognome=?,data_nascita=?,nazione=?,
+      sesso=?,descrizione=?,address=? WHERE email=?";
     $stmt = mysqli_prepare($db_connection, $query);
-    mysqli_stmt_bind_param($stmt, "sssssssssis", $first_name, $last_name, $user_birthday, $user_country,
-        $user_gender, $describe_user, $user_address, $user_city, $user_province, $user_CAP, $email);
+    mysqli_stmt_bind_param($stmt, "ssssssss", $first_name, $last_name, $user_birthday, $user_country,
+        $user_gender, $describe_user, $user_address, $email);
 
     $res = mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
@@ -57,13 +52,12 @@ function update_user( $email, $first_name, $last_name, $user_birthday, $user_cou
 
 // Get user from login
 $successful = update_user($email, $first_name, $last_name, $user_birthday, $user_country,
-    $user_gender, $describe_user, $user_address, $user_city, $user_province, $user_CAP, $con);
+    $user_gender, $describe_user, $user_address, $con);
 
 if ($successful) {
     // Success message
     header("Location: /show_profile.php");
     exit();
 } else {
-    // Error message
-    echo "There was an error in the update process.";
+    $error_message =  "C'è stato un errore nel processo di aggiornamento delle informazioni.";
 }

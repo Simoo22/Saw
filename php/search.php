@@ -38,39 +38,46 @@ $results = search($search, $con);
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/js/bootstrap/bootstrap.min.js"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Ricerca news</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="/js/bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
 
-    <?php require_once($path."/php/header.php"); ?>
+  <?php require_once($path."/includes/header.php"); ?>
 
+  <div style="min-height: 320px;">
     <div class='container mt-4 container border border-dark rounded'>
-      <div class='my-5 container'>
-        <a href="/comunication.php?id="></a>
-  <?php
-    if ($results) {
-      foreach ($results as $result) {
-        $object = $result['oggetto'];
-        $text = $result['testo'];
-        $mailid = $result['mailid'];
-        // Format as you like and print search results
-        echo "
+      <div class='mt-5 container'>
+        <?php
+        if ($results) {
+          foreach ($results as $result) {
+            $object = $result['oggetto'];
+            $text = $result['testo'];
+            $mailid = $result['mailid'];
+            // Format as you like and print search results
+            echo "
             <a href='/comunication.php?id=$mailid' class='font-weight-bold text-uppercase text-dark' style='text-decoration: none;'>$object</a>
             <br>
-            $text
-            <br> <hr>";
-      }
-    } else {
-      // No matches found
-      echo "No results found";
-    }
-  ?>
-</div>
-</div>
-  </body>
+            <p>$text</p>
+            <hr>";
+          }
+        } else {
+          // No matches found
+          echo "<p>No results found</p> <br>";
+        }
+        ?>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" >
+    <?php include($path."/includes/footer.html"); ?>
+  </div>
+
+</body>
 </html>

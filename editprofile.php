@@ -3,7 +3,7 @@
 
 $path = $_SERVER["DOCUMENT_ROOT"];
 require_once($path."/db/mysql_credentials.php");
-require($path."/php/header.php");
+require($path."/includes/header.php");
 
 if(!isset($_SESSION['email'])){
 	header("location: /index.php");
@@ -27,9 +27,6 @@ if(isset($_SESSION['email'])) {
 	$user_birthday = $row['data_nascita'];
 	$user_image = $row['immagine_profilo'];
 	$register_date = $row['reg_date'];
-	$user_city = $row['comune'];
-	$user_province = $row['provincia'];
-	$user_CAP = $row['CAP'];
 	$user_address =$row['address'];
 }
 ?>
@@ -40,6 +37,7 @@ if(isset($_SESSION['email'])) {
 	<meta charset="utf-8">
 	<meta content="author" name="Caruso Simone">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
 </head>
@@ -80,7 +78,7 @@ display:block;
 					<?php if($user_image != null) echo $user_image;
 					else echo "default-avatar.jpg";?>">
 					<button type="button" class="mybuttonoverlap btn btn-secondary btn-sm" onclick="return selectImage();">Aggiorna Immagine</button>
-					<form action="/php/upadate_profileimage.php" method="post" enctype="multipart/form-data">
+					<form action="/php/update_profileimage.php" method="post" enctype="multipart/form-data">
     				<input type="file" name="fileToUpload" id="fileToUpload" oninput="return imageupload();" hidden="hidden">
     				<input type="submit" class="mybuttonoverlap btn btn-secondary btn-sm" hidden="hidden" name="uploadSubmit" id="uploadSubmit">
 					</form>
@@ -88,7 +86,7 @@ display:block;
 			</div>
 			<div class="col-sm-9">
 				<form class="needs-validation" action="/php/update_profile.php" method="post" novalidate>
-					<div class="form-group row ml-5" style="">
+					<div class="form-group row ml-5">
 						<label for="nome" class="col-sm-1 col-form-label text-right text-muted">Nome</label>
 						<div class="col-md-3">
 							<input class="form-control text-dark" type="text" name="nome" value="<?php echo $first_name ?>" required>
@@ -111,26 +109,9 @@ display:block;
 					</div>
 					<hr>
 					<div class="form-group row">
-						<label for="nome" class="col-sm-2 col-form-label text-right text-muted">Città</label>
-						<div class="form-group col-md-4" >
-							<input class="form-control text-dark" type="text" name="city" value="<?php if($user_city != null) echo $user_city; ?>">
-							</select>
-						</div>
-						<label for="inputProvince" class="col-sm-1 col-form-label text-right text-muted">Provincia</label>
-						<div class="form-group col-md-3">
-							<select id="provincia" class="form-control" name="provincia" required>
-								<?php include($path."/html/province.html") ?>
-							</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="address" class="col-sm-2 col-form-label text-right text-muted">Via</label>
+						<label for="address" class="col-sm-2 col-form-label text-right text-muted">Indirizzo</label>
 						<div class="form-group col-md-5">
-							<input class="form-control text-dark" type="text" name="address" value="<?php if($user_address != null) echo $user_address; ?>" required>
-						</div>
-						<label for="CAP" class="col-sm-1 col-form-label text-right text-muted">CAP</label>
-						<div class="form-group col-md-2">
-							<input class="form-control text-dark" type="text" id='CAP' name="CAP" value="<?php if($user_CAP != null) echo $user_CAP; ?>" required>
+							<input class="form-control text-dark" type="text" name="address" value="<?php if($user_address != null) echo $user_address; ?>" placeholder="Via..., Città(Provincia)"required>
 						</div>
 					</div>
 					<hr>
@@ -144,11 +125,11 @@ display:block;
 					<hr>
 					<label class="col-sm-2 col-form-label text-right text-muted">Sesso</label>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="customRadioUomo" name="sesso" value="Uomo" class="custom-control-input" <?php if($user_gender == 'Uomo') echo "checked";?>>
+						<input type="radio" id="customRadioUomo" name="sesso" value="Uomo" class="custom-control-input" <?php if($user_gender == 'Uomo') echo "checked";?> required>
 						<label class="custom-control-label" for="customRadioUomo">Uomo</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="customRadioDonna" name="sesso" value="Donna" class="custom-control-input" <?php if($user_gender == 'Donna') echo "checked";?>>
+						<input type="radio" id="customRadioDonna" name="sesso" value="Donna" class="custom-control-input" <?php if($user_gender == 'Donna') echo "checked";?> required>
 						<label class="custom-control-label" for="customRadioDonna">Donna</label>
 					</div>
 					<div class="invalid-feedback">
@@ -192,10 +173,14 @@ display:block;
 		<br>
 		<br>
 	</div>
+
+	<div class="mt-5" >
+    <?php include($path."/includes/footer.html"); ?>
+  </div>
 </body>
 </html>
 
-<script type="text/javascript">
+<script>
 
 function selectImage() {
 	document.getElementById("fileToUpload").click();

@@ -2,7 +2,7 @@
 <?php
 $path = $_SERVER["DOCUMENT_ROOT"];
 require_once($path."/db/mysql_credentials.php");
-require($path."/php/header.php");
+require($path."/includes/header.php");
 
 if(!isset($_SESSION['email'])){
 	header("location: /index.php");
@@ -26,9 +26,6 @@ if(isset($_SESSION['email'])) {
 	$user_birthday = $row['data_nascita'];
 	$user_image = $row['immagine_profilo'];
 	$register_date = $row['reg_date'];
-	$user_city = $row['comune'];
-	$user_province = $row['provincia'];
-	$user_CAP = $row['CAP'];
 	$user_address =$row['address'];
 }
 ?>
@@ -40,6 +37,7 @@ if(isset($_SESSION['email'])) {
 	<meta charset="utf-8">
 	<meta content="author" name="Caruso Simone">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
 </head>
@@ -73,7 +71,7 @@ display:block;
 </style>
 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-	<div id="user-profile" class="container mx-5">
+	<div id="user-profile" class="container mx-5" style="min-height: 100%;">
 		<div class="row">
 			<div class="col-xs-12 col-sm-3 text-center">
 				<div class="mx-auto mt-3 d-block mydivouter">
@@ -81,7 +79,7 @@ display:block;
 					<?php if($user_image != null) echo $user_image;
 					else echo "default-avatar.jpg";?>">
 					<button type="button" class="mybuttonoverlap btn btn-secondary btn-sm" onclick="return selectImage();">Aggiorna Immagine</button>
-					<form action="/php/upadate_profileimage.php" method="post" enctype="multipart/form-data">
+					<form action="/php/update_profileimage.php" method="post" enctype="multipart/form-data">
     				<input type="file" name="fileToUpload" id="fileToUpload" oninput="return imageupload();" hidden="hidden">
     				<input type="submit" class="mybuttonoverlap btn btn-secondary btn-sm" hidden="hidden" name="uploadSubmit" id="uploadSubmit">
 					</form>
@@ -102,7 +100,7 @@ display:block;
 								Nazione
 							</div>
 							<div class="col">
-								<?php if($user_country != null) echo '<i class="fa fa-map-marker"></i>'.$user_country;
+								<?php if($user_country != null) echo '<i class="fa fa-map-marker"></i>'.' '.$user_country;
 								else  echo '-';?>
 							</div>
 						</div>
@@ -112,7 +110,7 @@ display:block;
 								Residente a
 							</div>
 							<div class="col">
-								<div><?php echo $user_city."(".$user_province."), Via ".$user_address.", ".$user_CAP; ?></div>
+								<div><?php echo $user_address; ?></div>
 							</div>
 						</div>
 						<hr>
@@ -158,6 +156,10 @@ display:block;
 					</div>
 				</div>
 			</div>
+		</div>
+		<br>
+		<div class="mt-5" >
+			<?php include($path."/includes/footer.html"); ?>
 		</div>
 	</body>
 	</html>

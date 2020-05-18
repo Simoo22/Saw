@@ -5,7 +5,7 @@ require_once $path."/vendor/autoload.php";
 $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 //Enable SMTP debugging.
-$mail->SMTPDebug = 3;
+$mail->SMTPDebug = 0;
 //Set PHPMailer to use SMTP.
 $mail->isSMTP();
 //Set SMTP host name
